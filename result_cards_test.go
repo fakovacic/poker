@@ -73,6 +73,35 @@ func TestResultCards(t *testing.T) {
 			},
 		},
 		{
+			it: "pair",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Ace,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Ace,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Queen,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Six,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Two,
+				},
+			},
+			result: poker.Pair,
+			expectedResult: []int64{
+				0, 1,
+			},
+		},
+		{
 			it: "two-pairs",
 			cards: []*poker.Card{
 				{

@@ -574,8 +574,8 @@ func PairCards(cards []*Card) []int64 {
 		})
 
 		for i := range rankKeys {
-			if len(c[int64(i)]) == 2 {
-				return c[int64(i)]
+			if len(c[int64(rankKeys[i])]) == 2 {
+				return c[int64(rankKeys[i])]
 			}
 		}
 
