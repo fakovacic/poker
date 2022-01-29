@@ -9,6 +9,8 @@ linters:
     - gomnd
     - cyclop
     - gocognit
+    - ireturn
+    - varnamelen
 linters-settings:
   govet:
     check-shadowing: true
