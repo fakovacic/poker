@@ -72,6 +72,15 @@ func TestIsPair(t *testing.T) {
 			},
 			expectedResult: false,
 		},
+		{
+			it: "not ok, 1 cards",
+			cards: []*poker.Card{
+				{
+					Rank: poker.Ace,
+				},
+			},
+			expectedResult: false,
+		},
 	}
 
 	for _, tc := range cases {

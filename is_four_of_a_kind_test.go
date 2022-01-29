@@ -69,6 +69,18 @@ func TestIsFourOfAKind(t *testing.T) {
 			},
 			expectedResult: false,
 		},
+		{
+			it: "not ok, 2 cards",
+			cards: []*poker.Card{
+				{
+					Rank: poker.Ace,
+				},
+				{
+					Rank: poker.King,
+				},
+			},
+			expectedResult: false,
+		},
 	}
 
 	for _, tc := range cases {

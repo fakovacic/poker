@@ -49,7 +49,7 @@ func (s *deck) Switch(cards []*Card) {
 		s.cards[i] = cards[i]
 	}
 
-	s.cards = s.cards[:len(cards)-1]
+	s.cards = s.cards[:len(cards)]
 }
 
 func (s *deck) Cards() []*Card {

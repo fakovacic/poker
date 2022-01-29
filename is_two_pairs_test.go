@@ -147,6 +147,18 @@ func TestIsTwoPairs(t *testing.T) {
 			},
 			expectedResult: false,
 		},
+		{
+			it: "not ok, 2 cards",
+			cards: []*poker.Card{
+				{
+					Rank: poker.Ace,
+				},
+				{
+					Rank: poker.Ace,
+				},
+			},
+			expectedResult: false,
+		},
 	}
 
 	for _, tc := range cases {

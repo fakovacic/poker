@@ -43,6 +43,19 @@ func TestResultCards(t *testing.T) {
 			},
 		},
 		{
+			it: "high-card - 1 card",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Ace,
+				},
+			},
+			result: poker.HighCard,
+			expectedResult: []int64{
+				0,
+			},
+		},
+		{
 			it: "pair",
 			cards: []*poker.Card{
 				{
@@ -69,6 +82,23 @@ func TestResultCards(t *testing.T) {
 			result: poker.Pair,
 			expectedResult: []int64{
 				3, 4,
+			},
+		},
+		{
+			it: "pair - 2 card",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Jack,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Jack,
+				},
+			},
+			result: poker.Pair,
+			expectedResult: []int64{
+				0,
 			},
 		},
 		{
@@ -159,6 +189,31 @@ func TestResultCards(t *testing.T) {
 			},
 		},
 		{
+			it: "two-pairs - 4 cards",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Six,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Six,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Two,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Two,
+				},
+			},
+			result: poker.TwoPairs,
+			expectedResult: []int64{
+				0, 1, 2, 3,
+			},
+		},
+		{
 			it: "three-of-a-kind",
 			cards: []*poker.Card{
 				{
@@ -185,6 +240,27 @@ func TestResultCards(t *testing.T) {
 			result: poker.ThreeOfAKind,
 			expectedResult: []int64{
 				0, 2, 4,
+			},
+		},
+		{
+			it: "three-of-a-kind - 3 cards",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Three,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Three,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Three,
+				},
+			},
+			result: poker.ThreeOfAKind,
+			expectedResult: []int64{
+				0, 1, 2,
 			},
 		},
 		{
@@ -243,6 +319,39 @@ func TestResultCards(t *testing.T) {
 			result: poker.Straight,
 			expectedResult: []int64{
 				0, 1, 2, 3, 4,
+			},
+		},
+		{
+			it: "straight - high cards",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Nine,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Ten,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Jack,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Queen,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.King,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Ace,
+				},
+			},
+			result: poker.Straight,
+			expectedResult: []int64{
+				1, 2, 3, 4, 5,
 			},
 		},
 		{
@@ -330,6 +439,31 @@ func TestResultCards(t *testing.T) {
 			result: poker.FourOfAKind,
 			expectedResult: []int64{
 				1, 2, 3, 4,
+			},
+		},
+		{
+			it: "four-of-a-kind - 4 cards",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Four,
+				},
+				{
+					Suite: poker.Clubs,
+					Rank:  poker.Four,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Four,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Four,
+				},
+			},
+			result: poker.FourOfAKind,
+			expectedResult: []int64{
+				0, 1, 2, 3,
 			},
 		},
 		{

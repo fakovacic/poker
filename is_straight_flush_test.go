@@ -221,6 +221,20 @@ func TestIsStraightFlush(t *testing.T) {
 			},
 			expectedResult: false,
 		},
+		{
+			it: "not ok, 2 cards",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Five,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Ten,
+				},
+			},
+			expectedResult: false,
+		},
 	}
 
 	for _, tc := range cases {

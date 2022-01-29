@@ -116,6 +116,20 @@ func TestIsRoyalFlush(t *testing.T) {
 			},
 			expectedResult: false,
 		},
+		{
+			it: "not ok, 2 cards",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Ten,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Jack,
+				},
+			},
+			expectedResult: false,
+		},
 	}
 
 	for _, tc := range cases {
