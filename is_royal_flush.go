@@ -20,7 +20,13 @@ func IsRoyalFlush(cards []*Card) bool {
 
 		val, ok := c[suite]
 		if !ok {
-			val = royalFlush{}
+			val = royalFlush{
+				ace:   false,
+				king:  false,
+				queen: false,
+				jack:  false,
+				ten:   false,
+			}
 		}
 
 		switch cards[i].Rank {

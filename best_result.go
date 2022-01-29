@@ -7,7 +7,11 @@ type bestResult struct {
 }
 
 func BestResult(deck []*Card) (string, []int64) {
-	s := bestResult{}
+	s := bestResult{
+		out:          make([]*Card, 0),
+		combinations: 0,
+		result:       "",
+	}
 
 	s.cardsCombination(deck, 5, 0)
 

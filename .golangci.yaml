@@ -6,6 +6,9 @@ linters:
     - dupl
     - funlen
     - gochecknoglobals
+    - gomnd
+    - cyclop
+    - gocognit
 linters-settings:
   govet:
     check-shadowing: true

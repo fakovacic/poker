@@ -14,6 +14,7 @@ func OddsDeck(deck []*Card) (int64, map[string]float64) {
 	s := oddsDeck{
 		odds:         make(map[string]float64),
 		combinations: 0,
+		out:          make([]*Card, 0),
 	}
 
 	s.oddsCalculateDeck(deck, 5, 0)

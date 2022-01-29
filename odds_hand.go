@@ -6,6 +6,7 @@ func OddsHand(hand, deck []*Card) (int64, map[string]float64) {
 	s := oddsHand{
 		odds:         make(map[string]float64),
 		combinations: 0,
+		out:          make([]*Card, 0),
 	}
 
 	s.oddsCalculateHand(hand, deck, 5-len(hand), 0)
@@ -29,7 +30,8 @@ func (s *oddsHand) oddsCalculateHand(hand, deck []*Card, level, i int) {
 	}
 
 	if level == 0 {
-		c := append(hand, s.out...)
+		c := hand
+		c = append(c, s.out...)
 		s.combinations++
 		s.checkCombination(c)
 

@@ -34,6 +34,7 @@ func IsStraight(cards []*Card) bool {
 	for i := range check {
 		if i == 0 {
 			previousCard = check[i]
+
 			continue
 		}
 

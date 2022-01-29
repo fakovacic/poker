@@ -50,7 +50,13 @@ func RoyalFlushCards(cards []*Card) []int64 {
 
 		val, ok := c[suite]
 		if !ok {
-			val = royalFlush{}
+			val = royalFlush{
+				ace:   false,
+				king:  false,
+				queen: false,
+				jack:  false,
+				ten:   false,
+			}
 		}
 
 		switch cards[i].Rank {
@@ -293,17 +299,24 @@ func FullHouseCards(cards []*Card) []int64 {
 	for i := range rankKeys {
 		if len(c[rankKeys[i]]) >= 3 && len(treeOfKind) == 0 {
 			treeOfKind = c[rankKeys[i]]
+
 			continue
 		}
 
 		if len(c[rankKeys[i]]) >= 2 && len(pairs) == 0 {
 			pairs = c[rankKeys[i]][:2]
+
 			continue
 		}
 	}
 
 	if len(pairs) != 0 && len(treeOfKind) != 0 {
-		ci := append(pairs, treeOfKind...)
+		ci := make([]int64, 5)
+		ci[0] = pairs[0]
+		ci[1] = pairs[1]
+		ci[2] = treeOfKind[0]
+		ci[3] = treeOfKind[1]
+		ci[4] = treeOfKind[2]
 
 		sort.Slice(ci, func(i, j int) bool {
 			return ci[i] < ci[j]
@@ -375,7 +388,7 @@ func StraightCards(cards []*Card) []int64 {
 		return nil
 	}
 
-	var rankKeys []int
+	rankKeys := make([]int, 0)
 
 	c := make(map[int]int64)
 
