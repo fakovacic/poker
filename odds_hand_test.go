@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/fakovacic/poker"
-	"github.com/matryer/is"
 )
 
 func TestOddsHand(t *testing.T) {
@@ -122,12 +121,17 @@ func TestOddsHand(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
-			checkIs := is.New(t)
-
 			combs, odds := poker.OddsHand(tc.hand, tc.deck)
 
-			checkIs.Equal(tc.expectedCombinations, combs)
-			checkIs.Equal(tc.expectedOdds, odds)
+			if tc.expectedCombinations != combs {
+				t.Errorf("expected: '%v' got: '%v'", tc.expectedCombinations, combs)
+			}
+
+			for i := range tc.expectedOdds {
+				if tc.expectedOdds[i] != odds[i] {
+					t.Errorf("expected odds %s: '%v' got: '%v'", i, tc.expectedOdds[i], odds[i])
+				}
+			}
 		})
 	}
 }

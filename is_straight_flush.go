@@ -50,6 +50,7 @@ func IsStraightFlush(cards []*Card) bool {
 	for i := range checkstraight {
 		if i == 0 {
 			previousCard = checkstraight[i]
+
 			continue
 		}
 

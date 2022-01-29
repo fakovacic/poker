@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/fakovacic/poker"
-	"github.com/matryer/is"
 )
 
 func TestResultCards(t *testing.T) {
@@ -41,6 +40,35 @@ func TestResultCards(t *testing.T) {
 			result: poker.HighCard,
 			expectedResult: []int64{
 				4,
+			},
+		},
+		{
+			it: "pair",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Ace,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Nine,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Six,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Jack,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Jack,
+				},
+			},
+			result: poker.Pair,
+			expectedResult: []int64{
+				3, 4,
 			},
 		},
 		{
@@ -128,6 +156,35 @@ func TestResultCards(t *testing.T) {
 			result: poker.TwoPairs,
 			expectedResult: []int64{
 				0, 1, 2, 3,
+			},
+		},
+		{
+			it: "three-of-a-kind",
+			cards: []*poker.Card{
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Three,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.Two,
+				},
+				{
+					Suite: poker.Diamonds,
+					Rank:  poker.Three,
+				},
+				{
+					Suite: poker.Hearts,
+					Rank:  poker.King,
+				},
+				{
+					Suite: poker.Spades,
+					Rank:  poker.Three,
+				},
+			},
+			result: poker.ThreeOfAKind,
+			expectedResult: []int64{
+				0, 2, 4,
 			},
 		},
 		{
@@ -337,7 +394,12 @@ func TestResultCards(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
-			is.New(t).Equal(tc.expectedResult, poker.ResultCards(tc.result, tc.cards))
+			for i := range tc.expectedResult {
+				res := poker.ResultCards(tc.result, tc.cards)
+				if tc.expectedResult[i] != res[i] {
+					t.Errorf("expected cards %d: '%v' got: '%v'", i, tc.expectedResult[i], res[i])
+				}
+			}
 		})
 	}
 }

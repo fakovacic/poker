@@ -13,6 +13,7 @@ func IsThreeOfAKind(cards []*Card) bool {
 		_, ok := check[r]
 		if !ok {
 			check[r] = 1
+
 			continue
 		}
 

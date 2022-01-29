@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/fakovacic/poker"
-	"github.com/matryer/is"
 )
 
 func TestIsRoyalFlush(t *testing.T) {
@@ -120,8 +119,9 @@ func TestIsRoyalFlush(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		t.Run(tc.it, func(t *testing.T) {
-			is.New(t).Equal(tc.expectedResult, poker.IsRoyalFlush(tc.cards))
-		})
+		res := poker.IsRoyalFlush(tc.cards)
+		if tc.expectedResult != res {
+			t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, res)
+		}
 	}
 }

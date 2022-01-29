@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/fakovacic/poker"
-	"github.com/matryer/is"
 )
 
 func TestBestResult(t *testing.T) {
@@ -309,8 +308,15 @@ func TestBestResult(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
 			result, cards := poker.BestResult(tc.cards)
-			is.New(t).Equal(tc.expectedResult, result)
-			is.New(t).Equal(tc.expectedCards, cards)
+			if tc.expectedResult != result {
+				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, result)
+			}
+
+			for i := range tc.expectedCards {
+				if tc.expectedCards[i] != cards[i] {
+					t.Errorf("expected card %d: '%d' got: '%d'", i, tc.expectedCards[i], cards[i])
+				}
+			}
 		})
 	}
 }
@@ -697,8 +703,15 @@ func TestBestResult7Cards(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
 			result, cards := poker.BestResult(tc.cards)
-			is.New(t).Equal(tc.expectedResult, result)
-			is.New(t).Equal(tc.expectedCards, cards)
+			if tc.expectedResult != result {
+				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, result)
+			}
+
+			for i := range tc.expectedCards {
+				if tc.expectedCards[i] != cards[i] {
+					t.Errorf("expected card %d: '%d' got: '%d'", i, tc.expectedCards[i], cards[i])
+				}
+			}
 		})
 	}
 }

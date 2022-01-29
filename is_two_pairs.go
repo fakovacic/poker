@@ -12,6 +12,7 @@ func IsTwoPairs(cards []*Card) bool {
 		_, ok := check[cards[i].Rank]
 		if !ok {
 			check[cards[i].Rank] = 1
+
 			continue
 		}
 

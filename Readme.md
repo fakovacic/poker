@@ -2,7 +2,6 @@
 
 
 ## TODO
-- remove dependecy
 - find best match between multiple hands
 - readme 
 - examples
