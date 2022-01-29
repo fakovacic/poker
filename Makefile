@@ -4,4 +4,4 @@ lint:
 
 .PHONY: test
 test:
-	@go test -race -cover ./.
+	@go test -race -cover .
