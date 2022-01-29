@@ -1,11 +1,7 @@
 package poker
 
-import (
-	"math/rand"
-	"time"
-)
-
 type Deck interface {
+	SetShuffler(Shuffler)
 	Shuffle()
 	Cards() []*Card
 	Switch([]*Card)
@@ -29,19 +25,22 @@ func NewDeck() Deck {
 	}
 
 	return &deck{
-		cards: cards,
+		shuffler: &defaultShuffler{},
+		cards:    cards,
 	}
 }
 
 type deck struct {
-	cards []*Card
+	shuffler Shuffler
+	cards    []*Card
+}
+
+func (s *deck) SetShuffler(sh Shuffler) {
+	s.shuffler = sh
 }
 
 func (s *deck) Shuffle() {
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(s.cards), func(i, j int) {
-		s.cards[i], s.cards[j] = s.cards[j], s.cards[i]
-	})
+	s.cards = s.shuffler.Shuffle(s.cards)
 }
 
 func (s *deck) Switch(cards []*Card) {
