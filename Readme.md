@@ -105,7 +105,7 @@ func main(){
 ```
 
 ## Hand
-- hand mimic player cards hand 
+- hand mimic player cards hand, you can deal card to player hand or get cards from player
 
 ```
 func main(){
@@ -136,7 +136,7 @@ type Card struct {
 ```
 
 ## Check certain result
-- there are set of functions to check each possible result from list of cards  
+- there are set of functions to check possible result from list of cards  
 
 ```
 func main(){
