@@ -316,7 +316,6 @@ func main(){
 
 ## TODO
 
-- find best match between multiple hands
 - winning odds for multiple hands
 
 - add parse color, suite, result, rank
