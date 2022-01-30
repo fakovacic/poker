@@ -80,6 +80,9 @@ func RoyalFlushCards(cards []*Card) []int64 {
 			val.ten = true
 
 			cl[suite] = append(cl[suite], int64(i))
+
+		case Eight, Five, Four, Nine, Seven, Six, Three, Two:
+			continue
 		}
 
 		c[suite] = val

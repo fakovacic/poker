@@ -40,6 +40,8 @@ func IsRoyalFlush(cards []*Card) bool {
 			val.jack = true
 		case Ten:
 			val.ten = true
+		case Eight, Five, Four, Nine, Seven, Six, Three, Two:
+			continue
 		}
 
 		c[suite] = val

@@ -12,6 +12,7 @@ func CompareHands(hands ...[]*Card) []int64 {
 	count := len(hands)
 
 	list := make([]handScore, count)
+
 	for i := range hands {
 		result, cards := BestResult(hands[i])
 
