@@ -10,7 +10,7 @@ func TestBestResult(t *testing.T) {
 	cases := []struct {
 		it             string
 		cards          []*poker.Card
-		expectedResult string
+		expectedResult poker.Result
 		expectedCards  []int64
 	}{
 		{
@@ -325,7 +325,7 @@ func TestBestResult7Cards(t *testing.T) {
 	cases := []struct {
 		it             string
 		cards          []*poker.Card
-		expectedResult string
+		expectedResult poker.Result
 		expectedCards  []int64
 	}{
 		{

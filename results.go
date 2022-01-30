@@ -1,32 +1,25 @@
 package poker
 
 const (
-	HighCard      string = "high-card"
-	Pair          string = "pair"
-	TwoPairs      string = "two-pairs"
-	ThreeOfAKind  string = "three-of-a-kind"
-	Straight      string = "straight"
-	Flush         string = "flush"
-	FullHouse     string = "full-house"
-	FourOfAKind   string = "four-of-a-kind"
-	StraightFlush string = "straight-flush"
-	RoyalFlush    string = "royal-flush"
+	HighCard      Result = "high-card"
+	Pair          Result = "pair"
+	TwoPairs      Result = "two-pairs"
+	ThreeOfAKind  Result = "three-of-a-kind"
+	Straight      Result = "straight"
+	Flush         Result = "flush"
+	FullHouse     Result = "full-house"
+	FourOfAKind   Result = "four-of-a-kind"
+	StraightFlush Result = "straight-flush"
+	RoyalFlush    Result = "royal-flush"
 )
 
-var ResultsList = []string{
-	RoyalFlush,
-	StraightFlush,
-	FourOfAKind,
-	FullHouse,
-	Flush,
-	Straight,
-	ThreeOfAKind,
-	TwoPairs,
-	Pair,
-	HighCard,
+type Result string
+
+func (r Result) String() string {
+	return string(r)
 }
 
-var resultScore = map[string]int64{
+var resultScore = map[Result]int64{
 	HighCard:      1,
 	Pair:          3,
 	TwoPairs:      4,
@@ -39,53 +32,19 @@ var resultScore = map[string]int64{
 	RoyalFlush:    11,
 }
 
-func Result(cards []*Card) string {
-	var ok bool
+func (r Result) Score() int64 {
+	return resultScore[r]
+}
 
-	ok = IsRoyalFlush(cards)
-	if ok {
-		return RoyalFlush
-	}
-
-	ok = IsStraightFlush(cards)
-	if ok {
-		return StraightFlush
-	}
-
-	ok = IsFourOfAKind(cards)
-	if ok {
-		return FourOfAKind
-	}
-
-	ok = IsFullHouse(cards)
-	if ok {
-		return FullHouse
-	}
-
-	ok = IsFlush(cards)
-	if ok {
-		return Flush
-	}
-
-	ok = IsStraight(cards)
-	if ok {
-		return Straight
-	}
-
-	ok = IsThreeOfAKind(cards)
-	if ok {
-		return ThreeOfAKind
-	}
-
-	ok = IsTwoPairs(cards)
-	if ok {
-		return TwoPairs
-	}
-
-	ok = IsPair(cards)
-	if ok {
-		return Pair
-	}
-
-	return HighCard
+var ResultsList = []Result{
+	RoyalFlush,
+	StraightFlush,
+	FourOfAKind,
+	FullHouse,
+	Flush,
+	Straight,
+	ThreeOfAKind,
+	TwoPairs,
+	Pair,
+	HighCard,
 }

@@ -3,10 +3,10 @@ package poker
 type bestResult struct {
 	out          []*Card
 	combinations int64
-	result       string
+	result       Result
 }
 
-func BestResult(deck []*Card) (string, []int64) {
+func BestResult(deck []*Card) (Result, []int64) {
 	s := bestResult{
 		out:          make([]*Card, 0),
 		combinations: 0,
@@ -43,13 +43,13 @@ func (s *bestResult) cardsCombination(deck []*Card, level, i int) {
 }
 
 func (s *bestResult) checkCombination(cards []*Card) {
-	res := Result(cards)
+	res := CardsResult(cards)
 
 	if s.result == "" {
 		s.result = res
 	}
 
-	if resultScore[s.result] < resultScore[res] {
+	if s.result.Score() < res.Score() {
 		s.result = res
 	}
 }

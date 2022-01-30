@@ -8,11 +8,11 @@ const (
 
 func CompareCardsRank(xCard, yCard *Card) string {
 	switch {
-	case xCard.RankScore() < yCard.RankScore():
+	case xCard.Rank.Score() < yCard.Rank.Score():
 		return High
-	case xCard.RankScore() > yCard.RankScore():
+	case xCard.Rank.Score() > yCard.Rank.Score():
 		return Low
-	case xCard.RankScore() == yCard.RankScore():
+	case xCard.Rank.Score() == yCard.Rank.Score():
 		return Equal
 	default:
 		return ""

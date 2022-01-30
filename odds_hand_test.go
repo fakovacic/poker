@@ -12,7 +12,7 @@ func TestOddsHand(t *testing.T) {
 		hand                 []*poker.Card
 		deck                 []*poker.Card
 		expectedCombinations int64
-		expectedOdds         map[string]float64
+		expectedOdds         map[poker.Result]float64
 	}{
 		{
 			it: "pair - 3 cards",
@@ -41,7 +41,7 @@ func TestOddsHand(t *testing.T) {
 				},
 			},
 			expectedCombinations: 1,
-			expectedOdds: map[string]float64{
+			expectedOdds: map[poker.Result]float64{
 				poker.TwoPairs: 100,
 			},
 		},
@@ -80,7 +80,7 @@ func TestOddsHand(t *testing.T) {
 				},
 			},
 			expectedCombinations: 10,
-			expectedOdds: map[string]float64{
+			expectedOdds: map[poker.Result]float64{
 				poker.HighCard: 10,
 				poker.Pair:     60,
 				poker.TwoPairs: 30,
@@ -113,7 +113,7 @@ func TestOddsHand(t *testing.T) {
 				},
 			},
 			expectedCombinations: 1,
-			expectedOdds: map[string]float64{
+			expectedOdds: map[poker.Result]float64{
 				poker.FourOfAKind: 100,
 			},
 		},

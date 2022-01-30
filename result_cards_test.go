@@ -10,7 +10,7 @@ func TestResultCards(t *testing.T) {
 	cases := []struct {
 		it             string
 		cards          []*poker.Card
-		result         string
+		result         poker.Result
 		expectedResult []int64
 	}{
 		{
@@ -538,7 +538,7 @@ func TestResultCards(t *testing.T) {
 	}
 }
 
-func benchmarkResultCards(result string, cards []*poker.Card, b *testing.B) {
+func benchmarkResultCards(result poker.Result, cards []*poker.Card, b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		poker.ResultCards(result, cards)
 	}

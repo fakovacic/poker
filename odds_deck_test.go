@@ -8,7 +8,7 @@ import (
 
 func TestOddsDeckAllCards(t *testing.T) {
 	expectedCombinations := int64(2598960)
-	expectedOdds := map[string]float64{
+	expectedOdds := map[poker.Result]float64{
 		poker.HighCard:      50.11774,
 		poker.Pair:          42.2569,
 		poker.TwoPairs:      4.7539,

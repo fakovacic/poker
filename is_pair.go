@@ -5,7 +5,7 @@ func IsPair(cards []*Card) bool {
 		return false
 	}
 
-	check := make(map[string]int)
+	check := make(map[Rank]int)
 	for i := range cards {
 		_, ok := check[cards[i].Rank]
 		if !ok {

@@ -9,7 +9,7 @@ import (
 func TestValidateSuite(t *testing.T) {
 	cases := []struct {
 		it             string
-		suite          string
+		suite          poker.Suite
 		expectedResult bool
 	}{
 		{
@@ -42,6 +42,49 @@ func TestValidateSuite(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
 			res := poker.ValidateSuite(tc.suite)
+			if tc.expectedResult != res {
+				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, res)
+			}
+		})
+	}
+}
+
+func TestSuiteColor(t *testing.T) {
+	cases := []struct {
+		it             string
+		suite          poker.Suite
+		expectedResult poker.Color
+	}{
+		{
+			it:             "clubs",
+			suite:          poker.Clubs,
+			expectedResult: poker.Black,
+		},
+		{
+			it:             "diamonds",
+			suite:          poker.Diamonds,
+			expectedResult: poker.Red,
+		},
+		{
+			it:             "hearts",
+			suite:          poker.Hearts,
+			expectedResult: poker.Red,
+		},
+		{
+			it:             "spades",
+			suite:          poker.Spades,
+			expectedResult: poker.Black,
+		},
+		{
+			it:             "ok",
+			suite:          "ok",
+			expectedResult: "",
+		},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.it, func(t *testing.T) {
+			res := tc.suite.Color()
 			if tc.expectedResult != res {
 				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, res)
 			}

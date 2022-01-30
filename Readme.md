@@ -291,5 +291,8 @@ func main(){
 
 ## TODO
 
+- cards score
 - find best match between multiple hands
 - winning odds for multiple hands
+
+- types

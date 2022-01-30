@@ -6,11 +6,11 @@ import (
 	"github.com/fakovacic/poker"
 )
 
-func TestResult(t *testing.T) {
+func TestCardsResult(t *testing.T) {
 	cases := []struct {
 		it             string
 		cards          []*poker.Card
-		expectedResult string
+		expectedResult poker.Result
 	}{
 		{
 			it: "high-card",
@@ -276,7 +276,7 @@ func TestResult(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
-			res := poker.Result(tc.cards)
+			res := poker.CardsResult(tc.cards)
 			if tc.expectedResult != res {
 				t.Errorf("expected result: '%s' got: '%s'", tc.expectedResult, res)
 			}
@@ -286,7 +286,7 @@ func TestResult(t *testing.T) {
 
 func benchmarkResult(cards []*poker.Card, b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		poker.Result(cards)
+		poker.CardsResult(cards)
 	}
 }
 

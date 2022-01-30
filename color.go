@@ -1,26 +1,17 @@
 package poker
 
 const (
-	Red   string = "R"
-	Black string = "B"
+	Red   Color = "R"
+	Black Color = "B"
 )
 
-func Color(color string) string {
-	switch color {
-	case Clubs:
-		return Black
-	case Spades:
-		return Black
-	case Diamonds:
-		return Red
-	case Hearts:
-		return Red
-	default:
-		return ""
-	}
+type Color string
+
+func (r Color) String() string {
+	return string(r)
 }
 
-func ValidateColor(color string) bool {
+func ValidateColor(color Color) bool {
 	switch color {
 	case Red, Black:
 		return true

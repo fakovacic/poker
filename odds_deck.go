@@ -7,12 +7,12 @@ import (
 type oddsDeck struct {
 	out          []*Card
 	combinations int64
-	odds         map[string]float64
+	odds         map[Result]float64
 }
 
-func OddsDeck(deck []*Card) (int64, map[string]float64) {
+func OddsDeck(deck []*Card) (int64, map[Result]float64) {
 	s := oddsDeck{
-		odds:         make(map[string]float64),
+		odds:         make(map[Result]float64),
 		combinations: 0,
 		out:          make([]*Card, 0),
 	}
@@ -51,7 +51,7 @@ func (s *oddsDeck) oddsCalculateDeck(deck []*Card, level, i int) {
 }
 
 func (s *oddsDeck) checkCombination(cards []*Card) {
-	res := Result(cards)
+	res := CardsResult(cards)
 
 	s.odds[res]++
 }

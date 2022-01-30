@@ -2,7 +2,7 @@ package poker
 
 import "sort"
 
-func ResultCards(result string, cards []*Card) []int64 {
+func ResultCards(result Result, cards []*Card) []int64 {
 	switch result {
 	case RoyalFlush:
 		return RoyalFlushCards(cards)
@@ -42,8 +42,8 @@ func RoyalFlushCards(cards []*Card) []int64 {
 		ace   bool
 	}
 
-	c := make(map[string]royalFlush)
-	cl := make(map[string][]int64)
+	c := make(map[Suite]royalFlush)
+	cl := make(map[Suite][]int64)
 
 	for i := range cards {
 		suite := cards[i].Suite
@@ -104,16 +104,16 @@ func StraightFlushCards(cards []*Card) []int64 {
 	type fc struct {
 		num   int64
 		rank  int64
-		suite string
+		suite Suite
 	}
 
-	c := make(map[string][]fc)
+	c := make(map[Suite][]fc)
 
 	for i := range cards {
 		suite := cards[i].Suite
 		c[suite] = append(c[suite], fc{
 			num:   int64(i),
-			rank:  cards[i].RankScore(),
+			rank:  cards[i].Rank.Score(),
 			suite: cards[i].Suite,
 		})
 
@@ -126,7 +126,7 @@ func StraightFlushCards(cards []*Card) []int64 {
 		return nil
 	}
 
-	straightCheck := make(map[string][]int64)
+	straightCheck := make(map[Suite][]int64)
 
 	for x := range c {
 		if len(c[x]) >= 5 {
@@ -235,7 +235,7 @@ func FourOfAKindCards(cards []*Card) []int64 {
 		c := make(map[int64][]int64)
 
 		for i := range cards {
-			cs := cards[i].RankScore()
+			cs := cards[i].Rank.Score()
 
 			_, ok := c[cs]
 			if !ok {
@@ -278,7 +278,7 @@ func FullHouseCards(cards []*Card) []int64 {
 	c := make(map[int64][]int64)
 
 	for i := range cards {
-		cs := cards[i].RankScore()
+		cs := cards[i].Rank.Score()
 
 		_, ok := c[cs]
 		if !ok {
@@ -340,13 +340,13 @@ func FlushCards(cards []*Card) []int64 {
 		rank int64
 	}
 
-	c := make(map[string][]fc)
+	c := make(map[Suite][]fc)
 
 	for i := range cards {
 		suite := cards[i].Suite
 		c[suite] = append(c[suite], fc{
 			num:  int64(i),
-			rank: cards[i].RankScore(),
+			rank: cards[i].Rank.Score(),
 		})
 
 		if len(c[cards[i].Suite]) == 5 {
@@ -474,7 +474,7 @@ func ThreeOfAKindCards(cards []*Card) []int64 {
 		c := make(map[int64][]int64)
 
 		for i := range cards {
-			cs := cards[i].RankScore()
+			cs := cards[i].Rank.Score()
 
 			_, ok := c[cs]
 			if !ok {
@@ -516,7 +516,7 @@ func TwoPairsCards(cards []*Card) []int64 {
 		c := make(map[int64][]int64)
 
 		for i := range cards {
-			cs := cards[i].RankScore()
+			cs := cards[i].Rank.Score()
 
 			_, ok := c[cs]
 			if !ok {
@@ -568,7 +568,7 @@ func PairCards(cards []*Card) []int64 {
 		c := make(map[int64][]int64)
 
 		for i := range cards {
-			cs := cards[i].RankScore()
+			cs := cards[i].Rank.Score()
 
 			_, ok := c[cs]
 			if !ok {
@@ -610,7 +610,7 @@ func HighCardCards(cards []*Card) []int64 {
 		c := make(map[int64]int64)
 
 		for i := range cards {
-			cs := cards[i].RankScore()
+			cs := cards[i].Rank.Score()
 			rankKeys = append(rankKeys, int(cs))
 			c[cs] = int64(i)
 		}

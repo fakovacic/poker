@@ -5,7 +5,7 @@ func IsFlush(cards []*Card) bool {
 		return false
 	}
 
-	check := make(map[string]int)
+	check := make(map[Suite]int)
 	for i := range cards {
 		_, ok := check[cards[i].Suite]
 		if !ok {

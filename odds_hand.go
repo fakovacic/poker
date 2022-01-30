@@ -2,9 +2,9 @@ package poker
 
 import "math"
 
-func OddsHand(hand, deck []*Card) (int64, map[string]float64) {
+func OddsHand(hand, deck []*Card) (int64, map[Result]float64) {
 	s := oddsHand{
-		odds:         make(map[string]float64),
+		odds:         make(map[Result]float64),
 		combinations: 0,
 		out:          make([]*Card, 0),
 	}
@@ -21,7 +21,7 @@ func OddsHand(hand, deck []*Card) (int64, map[string]float64) {
 type oddsHand struct {
 	out          []*Card
 	combinations int64
-	odds         map[string]float64
+	odds         map[Result]float64
 }
 
 func (s *oddsHand) oddsCalculateHand(hand, deck []*Card, level, i int) {
@@ -51,7 +51,7 @@ func (s *oddsHand) oddsCalculateHand(hand, deck []*Card, level, i int) {
 }
 
 func (s *oddsHand) checkCombination(cards []*Card) {
-	res := Result(cards)
+	res := CardsResult(cards)
 
 	s.odds[res]++
 }

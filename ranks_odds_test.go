@@ -9,7 +9,7 @@ import (
 func TestCalculateCardRank(t *testing.T) {
 	cases := []struct {
 		it                 string
-		rank               string
+		rank               poker.Rank
 		expectedResultLow  int64
 		expectedResultHigh int64
 	}{
@@ -110,7 +110,7 @@ func TestCalculateCardRank(t *testing.T) {
 func TestCalculateCardRankOdds(t *testing.T) {
 	cases := []struct {
 		it                 string
-		rank               string
+		rank               poker.Rank
 		expectedResultLow  float64
 		expectedResultHigh float64
 	}{

@@ -1,22 +1,48 @@
 package poker
 
 const (
-	Ace   string = "A"
-	King  string = "K"
-	Queen string = "Q"
-	Jack  string = "J"
-	Ten   string = "10"
-	Nine  string = "9"
-	Eight string = "8"
-	Seven string = "7"
-	Six   string = "6"
-	Five  string = "5"
-	Four  string = "4"
-	Three string = "3"
-	Two   string = "2"
+	Ace   Rank = "A"
+	King  Rank = "K"
+	Queen Rank = "Q"
+	Jack  Rank = "J"
+	Ten   Rank = "10"
+	Nine  Rank = "9"
+	Eight Rank = "8"
+	Seven Rank = "7"
+	Six   Rank = "6"
+	Five  Rank = "5"
+	Four  Rank = "4"
+	Three Rank = "3"
+	Two   Rank = "2"
 )
 
-var ranksList = []string{
+type Rank string
+
+func (r Rank) String() string {
+	return string(r)
+}
+
+var ranksScore = map[Rank]int64{
+	Two:   2,
+	Three: 3,
+	Four:  4,
+	Five:  5,
+	Six:   6,
+	Seven: 7,
+	Eight: 8,
+	Nine:  9,
+	Ten:   10,
+	Jack:  11,
+	Queen: 12,
+	King:  13,
+	Ace:   14,
+}
+
+func (r Rank) Score() int64 {
+	return ranksScore[r]
+}
+
+var ranksList = []Rank{
 	Ace,
 	King,
 	Queen,
@@ -32,7 +58,7 @@ var ranksList = []string{
 	Two,
 }
 
-var ranks = map[string]int{
+var ranks = map[Rank]int{
 	Ace + "Low":  1,
 	Two:          2,
 	Three:        3,
@@ -47,20 +73,4 @@ var ranks = map[string]int{
 	Queen:        12,
 	King:         13,
 	Ace + "High": 14,
-}
-
-var ranksScore = map[string]int64{
-	Two:   2,
-	Three: 3,
-	Four:  4,
-	Five:  5,
-	Six:   6,
-	Seven: 7,
-	Eight: 8,
-	Nine:  9,
-	Ten:   10,
-	Jack:  11,
-	Queen: 12,
-	King:  13,
-	Ace:   14,
 }

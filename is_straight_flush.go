@@ -9,7 +9,7 @@ func IsStraightFlush(cards []*Card) bool {
 
 	var flush bool
 
-	checkFlush := make(map[string]int)
+	checkFlush := make(map[Suite]int)
 	checkstraight := make([]int, 0)
 
 	for i := range cards {

@@ -2,7 +2,7 @@ package poker
 
 import "math"
 
-func CalculateCardRank(rank string) (int64, int64) {
+func CalculateCardRank(rank Rank) (int64, int64) {
 	if rank == "" {
 		return 0, 0
 	}
@@ -26,7 +26,7 @@ func CalculateCardRank(rank string) (int64, int64) {
 	return less, more
 }
 
-func CalculateCardRankOdds(rank string) (float64, float64) {
+func CalculateCardRankOdds(rank Rank) (float64, float64) {
 	less, more := CalculateCardRank(rank)
 
 	lessOdds := math.Round(((float64(less*4)/float64(51))*100)*oddsRounding) / oddsRounding
