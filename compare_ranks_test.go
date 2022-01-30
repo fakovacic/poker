@@ -10,7 +10,7 @@ func TestCompareCardsRank(t *testing.T) {
 	cases := []struct {
 		it             string
 		cards          []*poker.Card
-		expectedResult string
+		expectedResult poker.Compare
 	}{
 		{
 			it: "high",

@@ -1,12 +1,6 @@
 package poker
 
-const (
-	High  string = "high"
-	Low   string = "low"
-	Equal string = "equal"
-)
-
-func CompareCardsRank(xCard, yCard *Card) string {
+func CompareCardsRank(xCard, yCard *Card) Compare {
 	switch {
 	case xCard.Rank.Score() < yCard.Rank.Score():
 		return High
