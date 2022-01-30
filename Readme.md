@@ -7,56 +7,64 @@
 ### Ranks
 
 ```
+type Rank string
+
 const (
-	Ace   string = "A"
-	King  string = "K"
-	Queen string = "Q"
-	Jack  string = "J"
-	Ten   string = "10"
-	Nine  string = "9"
-	Eight string = "8"
-	Seven string = "7"
-	Six   string = "6"
-	Five  string = "5"
-	Four  string = "4"
-	Three string = "3"
-	Two   string = "2"
+	Ace   Rank = "A"
+	King  Rank = "K"
+	Queen Rank = "Q"
+	Jack  Rank = "J"
+	Ten   Rank = "10"
+	Nine  Rank = "9"
+	Eight Rank = "8"
+	Seven Rank = "7"
+	Six   Rank = "6"
+	Five  Rank = "5"
+	Four  Rank = "4"
+	Three Rank = "3"
+	Two   Rank = "2"
 )
 ```
 ### Suits
 
 ```
+type Suite string
+
 const (
-	Clubs    string = "C"
-	Diamonds string = "D"
-	Hearts   string = "H"
-	Spades   string = "S"
+	Clubs    Suite = "C"
+	Diamonds Suite = "D"
+	Hearts   Suite = "H"
+	Spades   Suite = "S"
 )
 ```
 
 ### Colors
 
 ```
+type Color string
+
 const (
-	Red   string = "R"
-	Black string = "B"
+	Red   Color = "R"
+	Black Color = "B"
 )
 ```
 
 ### Results
 
 ```
+type Result string
+
 const (
-	HighCard      string = "high-card"
-	Pair          string = "pair"
-	TwoPairs      string = "two-pairs"
-	ThreeOfAKind  string = "three-of-a-kind"
-	Straight      string = "straight"
-	Flush         string = "flush"
-	FullHouse     string = "full-house"
-	FourOfAKind   string = "four-of-a-kind"
-	StraightFlush string = "straight-flush"
-	RoyalFlush    string = "royal-flush"
+	HighCard      Result = "high-card"
+	Pair          Result = "pair"
+	TwoPairs      Result = "two-pairs"
+	ThreeOfAKind  Result = "three-of-a-kind"
+	Straight      Result = "straight"
+	Flush         Result = "flush"
+	FullHouse     Result = "full-house"
+	FourOfAKind   Result = "four-of-a-kind"
+	StraightFlush Result = "straight-flush"
+	RoyalFlush    Result = "royal-flush"
 )
 ```
 
@@ -130,12 +138,15 @@ func main(){
 
 ```
 type Card struct {
-	Suite string `json:"suite"`
-	Rank  string `json:"rank"`
+	Suite Suite `json:"suite"`
+	Rank  Rank `json:"rank"`
 }
 ```
 
-## Check certain result
+## Results
+- get results from cards list
+
+### Check certain result
 - there are set of functions to check possible result from list of cards  
 
 ```
@@ -164,7 +175,7 @@ func main(){
 
 ```
 
-## Get result
+### Get result
 - result will check best possible result from set of cards
 
 ```
@@ -197,7 +208,7 @@ func main(){
 
 ```
 
-## Get best result cards
+### Get best result cards
 - check which cards give most stronger result
 
 ```
@@ -233,7 +244,18 @@ func main(){
 
 ```
 
+## Compare
+
+### Compare ranks
+
+### Compare results
+
+### Compare hands
+
 ## Odds
+- calculate odds of deck, hand or next card by rank
+
+### Deck odds
 - you can calculate odds of each result from set of cards
 
 ```
@@ -269,7 +291,10 @@ func main(){
 
 ```
 
-## Rank odds
+### Hand odds
+
+
+### Rank odds
 - compare ranks between 2 cards
 
 ```
@@ -291,8 +316,12 @@ func main(){
 
 ## TODO
 
-- cards score
 - find best match between multiple hands
 - winning odds for multiple hands
 
-- types
+- add parse color, suite, result, rank
+- add pretty print 
+
+- odds readme
+- compare readme
+- go descriptions
