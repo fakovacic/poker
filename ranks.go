@@ -42,6 +42,30 @@ func (r Rank) Score() int64 {
 	return ranksScore[r]
 }
 
+func (r Rank) ScorePosition() (int64, int64) {
+	if r == "" {
+		return 0, 0
+	}
+
+	rankNum := r.Score()
+
+	var (
+		less int64
+		more int64
+	)
+
+	for k := range ranksScore {
+		switch {
+		case rankNum < ranksScore[k]:
+			more++
+		case rankNum > ranksScore[k]:
+			less++
+		}
+	}
+
+	return less, more
+}
+
 var ranksList = []Rank{
 	Ace,
 	King,
