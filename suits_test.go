@@ -6,42 +6,52 @@ import (
 	"github.com/fakovacic/poker"
 )
 
-func TestValidateSuite(t *testing.T) {
+func TestParseSuite(t *testing.T) {
 	cases := []struct {
 		it             string
-		suite          poker.Suite
-		expectedResult bool
+		suite          string
+		expectedOK     bool
+		expectedResult poker.Suite
 	}{
 		{
 			it:             "clubs",
-			suite:          poker.Clubs,
-			expectedResult: true,
+			suite:          "C",
+			expectedResult: poker.Clubs,
+			expectedOK:     true,
 		},
 		{
 			it:             "diamonds",
-			suite:          poker.Diamonds,
-			expectedResult: true,
+			suite:          "D",
+			expectedResult: poker.Diamonds,
+			expectedOK:     true,
 		},
 		{
 			it:             "hearts",
-			suite:          poker.Hearts,
-			expectedResult: true,
+			suite:          "H",
+			expectedResult: poker.Hearts,
+			expectedOK:     true,
 		},
 		{
 			it:             "spades",
-			suite:          poker.Spades,
-			expectedResult: true,
+			suite:          "S",
+			expectedResult: poker.Spades,
+			expectedOK:     true,
 		},
 		{
-			it:             "ok",
+			it:             "invalid suite",
 			suite:          "ok",
-			expectedResult: false,
+			expectedResult: "",
+			expectedOK:     false,
 		},
 	}
 
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
-			res := poker.ValidateSuite(tc.suite)
+			res, ok := poker.ParseSuite(tc.suite)
+			if tc.expectedOK != ok {
+				t.Errorf("expected ok: '%v' got: '%v'", tc.expectedOK, ok)
+			}
+
 			if tc.expectedResult != res {
 				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, res)
 			}

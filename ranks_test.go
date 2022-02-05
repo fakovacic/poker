@@ -106,3 +106,110 @@ func TestScorePosition(t *testing.T) {
 		})
 	}
 }
+
+func TestParseRank(t *testing.T) {
+	cases := []struct {
+		it             string
+		rank           string
+		expectedOK     bool
+		expectedResult poker.Rank
+	}{
+		{
+			it:             "two",
+			rank:           "2",
+			expectedResult: poker.Two,
+			expectedOK:     true,
+		},
+		{
+			it:             "three",
+			rank:           "3",
+			expectedResult: poker.Three,
+			expectedOK:     true,
+		},
+		{
+			it:             "four",
+			rank:           "4",
+			expectedResult: poker.Four,
+			expectedOK:     true,
+		},
+		{
+			it:             "five",
+			rank:           "5",
+			expectedResult: poker.Five,
+			expectedOK:     true,
+		},
+		{
+			it:             "six",
+			rank:           "6",
+			expectedResult: poker.Six,
+			expectedOK:     true,
+		},
+		{
+			it:             "seven",
+			rank:           "7",
+			expectedResult: poker.Seven,
+			expectedOK:     true,
+		},
+		{
+			it:             "eight",
+			rank:           "8",
+			expectedResult: poker.Eight,
+			expectedOK:     true,
+		},
+		{
+			it:             "nine",
+			rank:           "9",
+			expectedResult: poker.Nine,
+			expectedOK:     true,
+		},
+		{
+			it:             "ten",
+			rank:           "10",
+			expectedResult: poker.Ten,
+			expectedOK:     true,
+		},
+		{
+			it:             "jack",
+			rank:           "J",
+			expectedResult: poker.Jack,
+			expectedOK:     true,
+		},
+		{
+			it:             "queen",
+			rank:           "Q",
+			expectedResult: poker.Queen,
+			expectedOK:     true,
+		},
+		{
+			it:             "king",
+			rank:           "K",
+			expectedResult: poker.King,
+			expectedOK:     true,
+		},
+		{
+			it:             "ace",
+			rank:           "A",
+			expectedResult: poker.Ace,
+			expectedOK:     true,
+		},
+		{
+			it:             "invalid suite",
+			rank:           "ok",
+			expectedResult: "",
+			expectedOK:     false,
+		},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.it, func(t *testing.T) {
+			res, ok := poker.ParseRank(tc.rank)
+			if tc.expectedOK != ok {
+				t.Errorf("expected ok: '%v' got: '%v'", tc.expectedOK, ok)
+			}
+
+			if tc.expectedResult != res {
+				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, res)
+			}
+		})
+	}
+}

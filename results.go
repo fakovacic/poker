@@ -19,6 +19,37 @@ func (r Result) String() string {
 	return string(r)
 }
 
+func (r Result) Score() int64 {
+	return resultScore[r]
+}
+
+func ParseResult(result string) (Result, bool) {
+	switch result {
+	case "high-card":
+		return HighCard, true
+	case "pair":
+		return Pair, true
+	case "two-pairs":
+		return TwoPairs, true
+	case "three-of-a-kind":
+		return ThreeOfAKind, true
+	case "straight":
+		return Straight, true
+	case "flush":
+		return Flush, true
+	case "full-house":
+		return FullHouse, true
+	case "four-of-a-kind":
+		return FourOfAKind, true
+	case "straight-flush":
+		return StraightFlush, true
+	case "royal-flush":
+		return RoyalFlush, true
+	default:
+		return "", false
+	}
+}
+
 var resultScore = map[Result]int64{
 	HighCard:      1,
 	Pair:          3,
@@ -30,10 +61,6 @@ var resultScore = map[Result]int64{
 	FourOfAKind:   9,
 	StraightFlush: 10,
 	RoyalFlush:    11,
-}
-
-func (r Result) Score() int64 {
-	return resultScore[r]
 }
 
 var ResultsList = []Result{

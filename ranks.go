@@ -22,22 +22,6 @@ func (r Rank) String() string {
 	return string(r)
 }
 
-var ranksScore = map[Rank]int64{
-	Two:   2,
-	Three: 3,
-	Four:  4,
-	Five:  5,
-	Six:   6,
-	Seven: 7,
-	Eight: 8,
-	Nine:  9,
-	Ten:   10,
-	Jack:  11,
-	Queen: 12,
-	King:  13,
-	Ace:   14,
-}
-
 func (r Rank) Score() int64 {
 	return ranksScore[r]
 }
@@ -64,6 +48,55 @@ func (r Rank) ScorePosition() (int64, int64) {
 	}
 
 	return less, more
+}
+
+func ParseRank(rank string) (Rank, bool) {
+	switch rank {
+	case "A":
+		return Ace, true
+	case "K":
+		return King, true
+	case "Q":
+		return Queen, true
+	case "J":
+		return Jack, true
+	case "10":
+		return Ten, true
+	case "9":
+		return Nine, true
+	case "8":
+		return Eight, true
+	case "7":
+		return Seven, true
+	case "6":
+		return Six, true
+	case "5":
+		return Five, true
+	case "4":
+		return Four, true
+	case "3":
+		return Three, true
+	case "2":
+		return Two, true
+	default:
+		return "", false
+	}
+}
+
+var ranksScore = map[Rank]int64{
+	Two:   2,
+	Three: 3,
+	Four:  4,
+	Five:  5,
+	Six:   6,
+	Seven: 7,
+	Eight: 8,
+	Nine:  9,
+	Ten:   10,
+	Jack:  11,
+	Queen: 12,
+	King:  13,
+	Ace:   14,
 }
 
 var ranksList = []Rank{

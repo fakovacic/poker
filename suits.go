@@ -28,18 +28,24 @@ func (r Suite) Color() Color {
 	}
 }
 
+func ParseSuite(suite string) (Suite, bool) {
+	switch suite {
+	case "C":
+		return Clubs, true
+	case "D":
+		return Diamonds, true
+	case "H":
+		return Hearts, true
+	case "S":
+		return Spades, true
+	default:
+		return "", false
+	}
+}
+
 var suites = []Suite{
 	Clubs,
 	Diamonds,
 	Hearts,
 	Spades,
-}
-
-func ValidateSuite(suite Suite) bool {
-	switch suite {
-	case Clubs, Diamonds, Hearts, Spades:
-		return true
-	default:
-		return false
-	}
 }

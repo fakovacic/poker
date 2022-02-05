@@ -317,9 +317,7 @@ func main(){
 ## TODO
 
 - winning odds for multiple hands
-
-- add parse color, suite, result, rank
-- add pretty print 
+- winning odds for on anonymus hand
 
 - odds readme
 - compare readme

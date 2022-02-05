@@ -6,32 +6,40 @@ import (
 	"github.com/fakovacic/poker"
 )
 
-func TestValidateColor(t *testing.T) {
+func TestParseColor(t *testing.T) {
 	cases := []struct {
 		it             string
-		color          poker.Color
-		expectedResult bool
+		color          string
+		expectedOK     bool
+		expectedResult poker.Color
 	}{
 		{
 			it:             "red",
-			color:          poker.Red,
-			expectedResult: true,
+			color:          "R",
+			expectedResult: poker.Red,
+			expectedOK:     true,
 		},
 		{
 			it:             "black",
-			color:          poker.Black,
-			expectedResult: true,
+			color:          "B",
+			expectedResult: poker.Black,
+			expectedOK:     true,
 		},
 		{
-			it:             "ok",
+			it:             "invalid color",
 			color:          "ok",
-			expectedResult: false,
+			expectedResult: "",
+			expectedOK:     false,
 		},
 	}
 
 	for _, tc := range cases {
 		t.Run(tc.it, func(t *testing.T) {
-			res := poker.ValidateColor(tc.color)
+			res, ok := poker.ParseColor(tc.color)
+			if tc.expectedOK != ok {
+				t.Errorf("expected ok: '%v' got: '%v'", tc.expectedOK, ok)
+			}
+
 			if tc.expectedResult != res {
 				t.Errorf("expected: '%v' got: '%v'", tc.expectedResult, res)
 			}

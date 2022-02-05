@@ -11,11 +11,13 @@ func (r Color) String() string {
 	return string(r)
 }
 
-func ValidateColor(color Color) bool {
+func ParseColor(color string) (Color, bool) {
 	switch color {
-	case Red, Black:
-		return true
+	case "R":
+		return Red, true
+	case "B":
+		return Black, true
 	default:
-		return false
+		return "", false
 	}
 }
