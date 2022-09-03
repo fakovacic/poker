@@ -9,16 +9,18 @@ func IsStraightFlush(cards []*Card) bool {
 
 	var flush bool
 
-	checkFlush := make(map[Suite]int)
+	checkFlush := make(map[Suite]int, 4)
 	checkstraight := make([]int, 0)
 
 	for i := range cards {
-		_, ok := checkFlush[cards[i].Suite]
+		val, ok := checkFlush[cards[i].Suite]
 		if !ok {
-			checkFlush[cards[i].Suite] = 1
+			val = 1
 		} else {
-			checkFlush[cards[i].Suite]++
+			val++
 		}
+
+		checkFlush[cards[i].Suite] = val
 
 		if cards[i].Rank == Ace {
 			checkstraight = append(checkstraight, ranks[cards[i].Rank+"Low"])
@@ -29,7 +31,7 @@ func IsStraightFlush(cards []*Card) bool {
 
 		checkstraight = append(checkstraight, ranks[cards[i].Rank])
 
-		if checkFlush[cards[i].Suite] == 5 {
+		if val == 5 {
 			flush = true
 		}
 	}

@@ -5,23 +5,25 @@ func IsThreeOfAKind(cards []*Card) bool {
 		return false
 	}
 
-	check := make(map[Rank]int)
+	check := make(map[Rank]int, len(cards))
 
 	for i := range cards {
 		r := cards[i].Rank
 
-		_, ok := check[r]
+		val, ok := check[r]
 		if !ok {
 			check[r] = 1
 
 			continue
 		}
 
-		check[r]++
+		val++
 
-		if check[r] == 3 {
+		if val == 3 {
 			return true
 		}
+
+		check[r] = val
 	}
 
 	return false

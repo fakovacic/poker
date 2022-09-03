@@ -13,7 +13,7 @@ func IsRoyalFlush(cards []*Card) bool {
 		ace   bool
 	}
 
-	c := make(map[Suite]royalFlush)
+	c := make(map[Suite]royalFlush, 4)
 
 	for i := range cards {
 		suite := cards[i].Suite

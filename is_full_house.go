@@ -10,7 +10,7 @@ func IsFullHouse(cards []*Card) bool {
 		treeOfKind Rank
 	)
 
-	check := make(map[Rank]int)
+	check := make(map[Rank]int, len(cards))
 	for i := range cards {
 		_, ok := check[cards[i].Rank]
 		if !ok {
