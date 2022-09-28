@@ -45,10 +45,7 @@ func (s *deck) Shuffle() {
 }
 
 func (s *deck) Switch(cards []*Card) {
-	for i := range cards {
-		s.cards[i] = cards[i]
-	}
-
+	copy(s.cards, cards)
 	s.cards = s.cards[:len(cards)]
 }
 

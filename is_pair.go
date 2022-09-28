@@ -6,21 +6,17 @@ func IsPair(cards []*Card) bool {
 	}
 
 	check := make(map[Rank]int, len(cards))
-	for i := range cards {
-		val, ok := check[cards[i].Rank]
+	for _, c := range cards {
+		_, ok := check[c.Rank]
 		if !ok {
-			check[cards[i].Rank] = 1
+			check[c.Rank] = 1
 
 			continue
 		}
 
-		val++
-
-		if val == 2 {
+		if ok {
 			return true
 		}
-
-		check[cards[i].Rank] = val
 	}
 
 	return false

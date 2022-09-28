@@ -7,20 +7,18 @@ func IsFlush(cards []*Card) bool {
 
 	check := make(map[Suite]int, 4)
 	for i := range cards {
-		val, ok := check[cards[i].Suite]
+		_, ok := check[cards[i].Suite]
 		if !ok {
 			check[cards[i].Suite] = 1
 
 			continue
 		}
 
-		val++
+		check[cards[i].Suite]++
 
-		if val == 5 {
+		if check[cards[i].Suite] == 5 {
 			return true
 		}
-
-		check[cards[i].Suite] = val
 	}
 
 	return false
