@@ -92,3 +92,29 @@ func TestIsPair(t *testing.T) {
 		})
 	}
 }
+
+func benchmarkIsPair(cards []*poker.Card, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		poker.IsPair(cards)
+	}
+}
+
+func BenchmarkIsPair(b *testing.B) {
+	benchmarkIsPair([]*poker.Card{
+		{
+			Rank: poker.Ace,
+		},
+		{
+			Rank: poker.King,
+		},
+		{
+			Rank: poker.Queen,
+		},
+		{
+			Rank: poker.Jack,
+		},
+		{
+			Rank: poker.Ace,
+		},
+	}, b)
+}

@@ -317,6 +317,8 @@ func main(){
 ## TODO
 
 - winning odds for multiple hands
+
+- deck - deal again all cards without some cards
 - winning odds for on anonymus hand
 
 - odds readme

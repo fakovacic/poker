@@ -6,11 +6,11 @@ func IsFullHouse(cards []*Card) bool {
 	}
 
 	var (
-		pairs      Rank
-		treeOfKind Rank
+		pairs      bool
+		treeOfKind bool
 	)
 
-	check := make(map[Rank]int)
+	check := make(map[Rank]int, len(cards))
 	for i := range cards {
 		_, ok := check[cards[i].Rank]
 		if !ok {
@@ -22,17 +22,17 @@ func IsFullHouse(cards []*Card) bool {
 		check[cards[i].Rank]++
 	}
 
-	for deck, num := range check {
-		if num == 2 {
-			pairs = deck
+	for deck := range check {
+		if check[deck] == 2 {
+			pairs = true
 		}
 
-		if num == 3 {
-			treeOfKind = deck
+		if check[deck] == 3 {
+			treeOfKind = true
 		}
 	}
 
-	if pairs != "" && treeOfKind != "" {
+	if pairs && treeOfKind {
 		return true
 	}
 

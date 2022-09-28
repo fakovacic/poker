@@ -391,7 +391,7 @@ func StraightCards(cards []*Card) []int64 {
 		return nil
 	}
 
-	rankKeys := make([]int, 0)
+	rankKeys := make([]int, 0, 6)
 
 	c := make(map[int]int64)
 

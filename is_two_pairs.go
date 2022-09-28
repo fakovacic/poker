@@ -7,7 +7,7 @@ func IsTwoPairs(cards []*Card) bool {
 
 	var pairs int
 
-	check := make(map[Rank]int)
+	check := make(map[Rank]int, len(cards))
 	for i := range cards {
 		_, ok := check[cards[i].Rank]
 		if !ok {

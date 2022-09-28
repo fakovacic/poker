@@ -9,7 +9,7 @@ func IsStraight(cards []*Card) bool {
 		return false
 	}
 
-	check := make([]int, 0)
+	check := make([]int, 0, 6)
 
 	for i := range cards {
 		if cards[i].Rank == Ace {

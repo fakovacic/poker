@@ -5,7 +5,7 @@ func IsFourOfAKind(cards []*Card) bool {
 		return false
 	}
 
-	check := make(map[Rank]int)
+	check := make(map[Rank]int, len(cards))
 	for i := range cards {
 		_, ok := check[cards[i].Rank]
 		if !ok {

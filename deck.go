@@ -7,6 +7,7 @@ type Deck interface {
 	Switch([]*Card)
 	Draw() *Card
 	Discard()
+	RemoveCards([]*Card)
 }
 
 func NewDeck() Deck {
@@ -44,10 +45,7 @@ func (s *deck) Shuffle() {
 }
 
 func (s *deck) Switch(cards []*Card) {
-	for i := range cards {
-		s.cards[i] = cards[i]
-	}
-
+	copy(s.cards, cards)
 	s.cards = s.cards[:len(cards)]
 }
 
@@ -68,4 +66,35 @@ func (s *deck) Draw() *Card {
 
 func (s *deck) Discard() {
 	s.cards = s.cards[1:]
+}
+
+func (s *deck) RemoveCards(removeCards []*Card) {
+	removeCount := len(removeCards)
+	cards := make([]*Card, (maxDeckCards - removeCount))
+
+	removeCardsMap := make(map[string]struct{}, removeCount)
+	for x := range removeCards {
+		removeCardsMap[removeCards[x].String()] = struct{}{}
+	}
+
+	i := 0
+
+	for s := range suites {
+		for r := range ranksList {
+			c := &Card{
+				Suite: suites[s],
+				Rank:  ranksList[r],
+			}
+
+			_, ok := removeCardsMap[c.String()]
+			if ok {
+				continue
+			}
+
+			cards[i] = c
+			i++
+		}
+	}
+
+	s.cards = removeCards
 }
