@@ -1,3 +1,5 @@
+cards_results_test.go
+------------------------------------------------------------------------------------------------------
 BenchmarkResultHighCard-4        	 1094978	      1241 ns/op	     144 B/op	       2 allocs/op
 BenchmarkResultPair-4            	  542070	      2024 ns/op	     120 B/op	       3 allocs/op
 BenchmarkResultTwoPair-4         	  690014	      1684 ns/op	     120 B/op	       3 allocs/op
@@ -8,19 +10,3 @@ BenchmarkResultFullHouse-4       	 1451064	       814.4 ns/op	      48 B/op	    
 BenchmarkResultFourOfAKind-4     	 2088838	       575.9 ns/op	      48 B/op	       1 allocs/op
 BenchmarkResultStraightFlush-4   	 2178742	       555.7 ns/op	      72 B/op	       2 allocs/op
 BenchmarkResultRoyalFlush-4      	 5293947	       223.5 ns/op	       0 B/op	       0 allocs/op
-
-
-OddsAll - Only one function times
-
-0.481s - IsRoyalFlush
-0.925s - IsStraightFlush
-0.515s - IsFourOfAKind
-1.047s - IsFullHouse
-0.479s - IsFlush
-0.888s - IsStraight
-0.500s - IsThreeOfAKind
-0.527s - IsTwoPairs
-0.445s - IsPair
-
-0.445s
-0.404s
